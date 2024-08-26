@@ -15,7 +15,11 @@ from models_crossvit import CrossAttentionBlock
 
 from util.pos_embed import get_2d_sincos_pos_embed
 
-class SupervisedMAE(nn.Module):
+from huggingface_hub import PyTorchModelHubMixin
+
+
+class SupervisedMAE(nn.Module, PyTorchModelHubMixin,
+                    repo_url="https://github.com/Verg-Avesta/CounTR", pipeline_tag="zero-shot-image-classification", license="mit"):
     def __init__(self, img_size=384, patch_size=16, in_chans=3,
                  embed_dim=1024, depth=24, num_heads=16,
                  decoder_embed_dim=512, decoder_depth=2, decoder_num_heads=16,
